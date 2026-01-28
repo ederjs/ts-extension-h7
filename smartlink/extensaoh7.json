@@ -1,0 +1,500 @@
+[
+    {
+        "id": "f6597e9a443633d1",
+        "type": "tab",
+        "label": "Multiplo",
+        "disabled": false,
+        "info": "",
+        "env": [],
+        "dbPanelCode": "",
+        "extensionId": "a9130e61-3304-47da-bb4f-021ba2a963dc"
+    },
+    {
+        "id": "7c407c5ee338bba6",
+        "type": "tab",
+        "label": "Unico",
+        "disabled": false,
+        "info": "",
+        "env": [],
+        "dbPanelCode": "",
+        "extensionId": "a9130e61-3304-47da-bb4f-021ba2a963dc"
+    },
+    {
+        "id": "109eb7659b26ca69",
+        "type": "DBPanel Interceptor",
+        "z": "f6597e9a443633d1",
+        "tableName": "TIPO_ACOMODACAO",
+        "name": "TIPO_ACOMODACAO",
+        "url": "/interceptor/crud/30035",
+        "view": "30035",
+        "executionOrder": "2",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 260,
+        "y": 260,
+        "wires": [
+            [
+                "954ff3909a921fed"
+            ]
+        ]
+    },
+    {
+        "id": "dae4388819775081",
+        "type": "DBPanel Interceptor",
+        "z": "f6597e9a443633d1",
+        "tableName": "TIPO_ACOMODACAO",
+        "name": "TIPO_ACOMODACAO",
+        "url": "/interceptor/crud/30035",
+        "view": "30035",
+        "executionOrder": "1",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 400,
+        "wires": [
+            [
+                "33c1ca085bc58c2e"
+            ]
+        ]
+    },
+    {
+        "id": "3d5237571fd25416",
+        "type": "sql builder",
+        "z": "f6597e9a443633d1",
+        "parameters": [],
+        "name": "Insert",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "template": "Insert into LOG_TASY (DT_ATUALIZACAO,NM_USUARIO,CD_LOG,DS_LOG,NR_SEQUENCIA,DS_UTC_ATUALIZACAO,DS_UTC,IE_HORARIO_VERAO) \nvalues (sysdate,'tasy','666','TESTE INTERCEPTOR TIPO ACOMODACAO DB2',LOG_TASY_seq.nextval, sysdate ,null,'N')\n",
+        "output": "str",
+        "x": 830,
+        "y": 140,
+        "wires": [
+            [
+                "9394e547fdfeee3c"
+            ]
+        ]
+    },
+    {
+        "id": "9394e547fdfeee3c",
+        "type": "tasy data access",
+        "z": "f6597e9a443633d1",
+        "name": "",
+        "x": 1030,
+        "y": 140,
+        "wires": [
+            [
+                "ee5e5fe93dc64d82",
+                "faca818a3cc2ddc4"
+            ]
+        ]
+    },
+    {
+        "id": "ee5e5fe93dc64d82",
+        "type": "debug",
+        "z": "f6597e9a443633d1",
+        "name": "DEBUG-TIPO-ACOMOD-OR2",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1290,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "6c2d961bfaf99736",
+        "type": "function",
+        "z": "f6597e9a443633d1",
+        "name": "Abort",
+        "func": "if(msg.payload.table != null){\n    msg.payload.abort = \"Realizado Abort TIPO_ACOMODACAO ORDEM 1\";\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 400,
+        "wires": [
+            [
+                "251b210cf4369ae5",
+                "1bf3ad26f02e3e72"
+            ]
+        ]
+    },
+    {
+        "id": "251b210cf4369ae5",
+        "type": "debug",
+        "z": "f6597e9a443633d1",
+        "name": "DEBUG-TIPO-ACOMOD-OR1",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "1bf3ad26f02e3e72",
+        "type": "http response",
+        "z": "f6597e9a443633d1",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 810,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "faca818a3cc2ddc4",
+        "type": "http response",
+        "z": "f6597e9a443633d1",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1130,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "33c1ca085bc58c2e",
+        "type": "switch",
+        "z": "f6597e9a443633d1",
+        "name": "",
+        "property": "payload.eventMoment",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "BEFORE",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "AFTER",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 410,
+        "y": 400,
+        "wires": [
+            [
+                "d11fd4c70067063f"
+            ],
+            [
+                "1bf3ad26f02e3e72"
+            ]
+        ]
+    },
+    {
+        "id": "954ff3909a921fed",
+        "type": "switch",
+        "z": "f6597e9a443633d1",
+        "name": "",
+        "property": "payload.eventMoment",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "BEFORE",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "AFTER",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "aba0073144bd3521"
+            ],
+            [
+                "faca818a3cc2ddc4"
+            ]
+        ]
+    },
+    {
+        "id": "aba0073144bd3521",
+        "type": "switch",
+        "z": "f6597e9a443633d1",
+        "name": "",
+        "property": "payload.records",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 140,
+        "wires": [
+            [
+                "3d5237571fd25416"
+            ],
+            [
+                "faca818a3cc2ddc4"
+            ]
+        ]
+    },
+    {
+        "id": "1b0309810e85b39d",
+        "type": "function",
+        "z": "f6597e9a443633d1",
+        "name": "function 1",
+        "func": "msg.payload.records.CD_NIVEL_ACOMODACAO = 12;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 60,
+        "wires": [
+            [
+                "1e53cf0ed40bc01d"
+            ]
+        ]
+    },
+    {
+        "id": "1e53cf0ed40bc01d",
+        "type": "debug",
+        "z": "f6597e9a443633d1",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d11fd4c70067063f",
+        "type": "switch",
+        "z": "f6597e9a443633d1",
+        "name": "",
+        "property": "payload.records",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 630,
+        "y": 400,
+        "wires": [
+            [
+                "6c2d961bfaf99736"
+            ],
+            [
+                "1bf3ad26f02e3e72"
+            ]
+        ]
+    },
+    {
+        "id": "b3eb50f36ba0fe8c",
+        "type": "DBPanel Interceptor",
+        "z": "7c407c5ee338bba6",
+        "tableName": "TIPO_ACOMOD_DIFERENCA",
+        "name": "TIPO_ACOMOD_DIFERENCA",
+        "url": "/interceptor/crud/26578",
+        "view": "26578",
+        "executionOrder": 0,
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 380,
+        "wires": [
+            [
+                "f8a63d8fe6c0b652"
+            ]
+        ]
+    },
+    {
+        "id": "085955abbf270a95",
+        "type": "function",
+        "z": "7c407c5ee338bba6",
+        "name": "Abort",
+        "func": "if(msg.payload.table != null){\n    msg.payload.abort = \" Realizado Abort TIPO_ACOMOD_DIFERENCA\";\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 60,
+        "wires": [
+            [
+                "91dbc11ae8279d93"
+            ]
+        ]
+    },
+    {
+        "id": "91dbc11ae8279d93",
+        "type": "debug",
+        "z": "7c407c5ee338bba6",
+        "name": "DEBUG TIPO-ACOMOD-DIF ABORTA",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "29cacc765d7aef9d",
+        "type": "http response",
+        "z": "7c407c5ee338bba6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 870,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f8a63d8fe6c0b652",
+        "type": "switch",
+        "z": "7c407c5ee338bba6",
+        "name": "",
+        "property": "payload.eventMoment",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "BEFORE",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "AFTER",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 430,
+        "y": 380,
+        "wires": [
+            [
+                "07c075a54afcdecb"
+            ],
+            [
+                "29cacc765d7aef9d"
+            ]
+        ]
+    },
+    {
+        "id": "196f9a826e96617b",
+        "type": "function",
+        "z": "7c407c5ee338bba6",
+        "name": "function 2",
+        "func": "msg.payload.records.CD_TIPO_ACOMOD_DIF = 1;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 280,
+        "wires": [
+            [
+                "29cacc765d7aef9d",
+                "09a2be22d250fee4"
+            ]
+        ]
+    },
+    {
+        "id": "09a2be22d250fee4",
+        "type": "debug",
+        "z": "7c407c5ee338bba6",
+        "name": "DEBUG-H5-TIPO-ACOM-DIF-MODIF",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "07c075a54afcdecb",
+        "type": "switch",
+        "z": "7c407c5ee338bba6",
+        "name": "",
+        "property": "payload.records",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 480,
+        "y": 280,
+        "wires": [
+            [
+                "196f9a826e96617b"
+            ],
+            [
+                "29cacc765d7aef9d"
+            ]
+        ]
+    }
+]
