@@ -1,0 +1,124 @@
+[
+  {
+    "id": "b2bd2c26aa07eef4",
+    "type": "tab",
+    "label": "Smartcare",
+    "disabled": false,
+    "info": "",
+    "env": [],
+    "dbPanelCode": "",
+    "extensionId": "29969424-11e7-489f-9ee5-29b408799c0d"
+  },
+  {
+    "id": "5f204411257c4ba8",
+    "type": "smartcare",
+    "z": "b2bd2c26aa07eef4",
+    "name": "",
+    "agent": "9f6e42cc939e0637",
+    "agentName": "smartcare-h7",
+    "inputMode": "payload",
+    "fixedInput": "",
+    "modelOverride": "",
+    "temperature": "",
+    "memoryId": "",
+    "tagsSource": "",
+    "headers": [],
+    "x": 590,
+    "y": 160,
+    "wires": [
+      [
+        "84d9aefbf2ed043f"
+      ]
+    ]
+  },
+  {
+    "id": "84d9aefbf2ed043f",
+    "type": "debug",
+    "z": "b2bd2c26aa07eef4",
+    "name": "debug 2",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 820,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "caf952c30bdc9a71",
+    "type": "inject",
+    "z": "b2bd2c26aa07eef4",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 120,
+    "y": 160,
+    "wires": [
+      [
+        "1f14050b19fe5780"
+      ]
+    ]
+  },
+  {
+    "id": "1f14050b19fe5780",
+    "type": "function",
+    "z": "b2bd2c26aa07eef4",
+    "name": "function 1",
+    "func": "msg.payload = 'Gostaria de saber previsao do tempo para Blumenau';\nmsg.memoryId = '2579f5cf-21ae-4c4a-95ad-b37a4bb8b4a9';\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 360,
+    "y": 160,
+    "wires": [
+      [
+        "5f204411257c4ba8"
+      ]
+    ]
+  },
+  {
+    "id": "c60b0b91db4e163d",
+    "type": "smartcare-mcp",
+    "name": "968c6db3-de9f-4e42-a9ae-064f32e684cf",
+    "mcpSlug": "968c6db3-de9f-4e42-a9ae-064f32e684cf",
+    "mcpLabel": "968c6db3-de9f-4e42-a9ae-064f32e684cf",
+    "specType": "paste",
+    "openApiSpec": "",
+    "authType": "noauth",
+    "headerName": "",
+    "mcpUrl": "",
+    "registered": true
+  },
+  {
+    "id": "9f6e42cc939e0637",
+    "type": "smartcare-agent",
+    "name": "Smartcare H7",
+    "agentName": "smartcare-h7",
+    "personality": "You are a helpful assistant.",
+    "mcpServers": "[\"968c6db3-de9f-4e42-a9ae-064f32e684cf\"]",
+    "inputs": "TEXT",
+    "guardrailEnabled": false,
+    "sanitizationEnabled": false,
+    "registered": false
+  }
+]

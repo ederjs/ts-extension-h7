@@ -1,0 +1,161 @@
+[
+  {
+    "id": "eafb8e1ec7af2ba8",
+    "type": "tab",
+    "label": "Teste Token",
+    "disabled": false,
+    "info": "",
+    "env": [],
+    "dbPanelCode": "",
+    "extensionId": "add1245f-d67a-4553-96fd-e73763a8b749"
+  },
+  {
+    "id": "d5f6417452fb545f",
+    "type": "DBPanel Interceptor",
+    "z": "eafb8e1ec7af2ba8",
+    "tableName": "TIPO_ACOMODACAO",
+    "name": "TIPO_ACOMODACAO",
+    "url": "/interceptor/crud/30035",
+    "view": "30035",
+    "executionOrder": "1",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 220,
+    "y": 320,
+    "wires": [
+      [
+        "2cce8fa26628b8cb",
+        "39ad0a6b14a63c0c"
+      ]
+    ]
+  },
+  {
+    "id": "39ad0a6b14a63c0c",
+    "type": "switch",
+    "z": "eafb8e1ec7af2ba8",
+    "name": "",
+    "property": "payload.records",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nnull"
+      },
+      {
+        "t": "null"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 510,
+    "y": 340,
+    "wires": [
+      [
+        "3e06d5829aae4c02",
+        "078b5cc8b20283ea"
+      ],
+      [
+        "b9bbcc338c868044"
+      ]
+    ]
+  },
+  {
+    "id": "3e06d5829aae4c02",
+    "type": "function",
+    "z": "eafb8e1ec7af2ba8",
+    "name": "function 1",
+    "func": "msg.payload.records.CD_NIVEL_ACOMODACAO = 10;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 780,
+    "y": 340,
+    "wires": [
+      [
+        "b9bbcc338c868044",
+        "59e96db3fce7a2c9"
+      ]
+    ]
+  },
+  {
+    "id": "b9bbcc338c868044",
+    "type": "http response",
+    "z": "eafb8e1ec7af2ba8",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 850,
+    "y": 460,
+    "wires": []
+  },
+  {
+    "id": "59e96db3fce7a2c9",
+    "type": "debug",
+    "z": "eafb8e1ec7af2ba8",
+    "name": "DEBUG TESTE TOKEN",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1090,
+    "y": 320,
+    "wires": []
+  },
+  {
+    "id": "2cce8fa26628b8cb",
+    "type": "debug",
+    "z": "eafb8e1ec7af2ba8",
+    "name": "DEBUG INICIO INTERCEPTOR",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 570,
+    "y": 460,
+    "wires": []
+  },
+  {
+    "id": "3b6ed330143ee16d",
+    "type": "tasy data access",
+    "z": "eafb8e1ec7af2ba8",
+    "name": "TASY_DB",
+    "x": 840,
+    "y": 240,
+    "wires": [
+      [
+        "3e06d5829aae4c02"
+      ]
+    ]
+  },
+  {
+    "id": "078b5cc8b20283ea",
+    "type": "sql builder",
+    "z": "eafb8e1ec7af2ba8",
+    "parameters": [],
+    "name": "Insert",
+    "field": "topic",
+    "fieldType": "msg",
+    "format": "handlebars",
+    "template": "Insert into LOG_TASY (DT_ATUALIZACAO,NM_USUARIO,CD_LOG,DS_LOG,NR_SEQUENCIA,DS_UTC_ATUALIZACAO,DS_UTC,IE_HORARIO_VERAO) \nvalues (sysdate,'tasy','666','TESTE INTERCEPTOR TIPO ACOMODACAO DB2',LOG_TASY_seq.nextval, sysdate ,null,'N')\n",
+    "output": "str",
+    "x": 670,
+    "y": 220,
+    "wires": [
+      [
+        "3b6ed330143ee16d"
+      ]
+    ]
+  }
+]

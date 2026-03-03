@@ -1,0 +1,192 @@
+[
+  {
+    "id": "15d5e4acef0d897a",
+    "type": "tab",
+    "label": "Ext-h6",
+    "disabled": false,
+    "info": "",
+    "env": [],
+    "dbPanelCode": "",
+    "extensionId": "29969424-11e7-489f-9ee5-29b408799c0d"
+  },
+  {
+    "id": "bbbce60155f6ce6c",
+    "type": "DBPanel Interceptor",
+    "z": "15d5e4acef0d897a",
+    "tableName": "TIPO_ACOMOD_DIFERENCA",
+    "name": "TIPO_ACOMOD_DIFERENCA",
+    "url": "/interceptor/crud/26578",
+    "view": "26578",
+    "executionOrder": "2",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 130,
+    "y": 400,
+    "wires": [
+      [
+        "31ce768d539e8502"
+      ]
+    ]
+  },
+  {
+    "id": "31ce768d539e8502",
+    "type": "switch",
+    "z": "15d5e4acef0d897a",
+    "name": "Switch",
+    "property": "payload.eventMoment",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "BEFORE",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "AFTER",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 370,
+    "y": 400,
+    "wires": [
+      [
+        "decbf1a93f6113b3"
+      ],
+      [
+        "ae705e0480652ebe"
+      ]
+    ]
+  },
+  {
+    "id": "b3baf85de7da5d32",
+    "type": "sql builder",
+    "z": "15d5e4acef0d897a",
+    "parameters": [],
+    "name": "insert",
+    "field": "topic",
+    "fieldType": "msg",
+    "format": "handlebars",
+    "template": "insert into pls_log_temporario (nr_sequencia, dt_atualizacao, nm_usuario, dt_atualizacao_nrec, nm_usuario_nrec, ds_observacao)\nvalues (pls_log_temporario_seq.nextval, sysdate, 'CMDK-EXT', sysdate, 'CMDK-EXT', 'Log gerado extensão ts-extension-h6')",
+    "output": "str",
+    "x": 670,
+    "y": 240,
+    "wires": [
+      [
+        "2a82cda5d2d17c79"
+      ]
+    ]
+  },
+  {
+    "id": "2a82cda5d2d17c79",
+    "type": "tasy data access",
+    "z": "15d5e4acef0d897a",
+    "name": "",
+    "x": 850,
+    "y": 240,
+    "wires": [
+      [
+        "143ba3e38662185d",
+        "ae705e0480652ebe"
+      ]
+    ]
+  },
+  {
+    "id": "ae705e0480652ebe",
+    "type": "http response",
+    "z": "15d5e4acef0d897a",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 890,
+    "y": 408,
+    "wires": []
+  },
+  {
+    "id": "143ba3e38662185d",
+    "type": "debug",
+    "z": "15d5e4acef0d897a",
+    "name": "DEBUG EXTENSION-H6",
+    "active": true,
+    "tosidebar": true,
+    "console": true,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1140,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "383509ba614465e9",
+    "type": "function",
+    "z": "15d5e4acef0d897a",
+    "name": "function 1",
+    "func": "msg.payload.records.CD_TIPO_ACOMOD_DIF = 1;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 790,
+    "y": 100,
+    "wires": [
+      [
+        "1b648e40d07047d5"
+      ]
+    ]
+  },
+  {
+    "id": "1b648e40d07047d5",
+    "type": "debug",
+    "z": "15d5e4acef0d897a",
+    "name": "DEBUG EXT-H6-DBPANEL",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1100,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "decbf1a93f6113b3",
+    "type": "switch",
+    "z": "15d5e4acef0d897a",
+    "name": "",
+    "property": "payload.records",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nnull"
+      },
+      {
+        "t": "null"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 480,
+    "y": 240,
+    "wires": [
+      [
+        "b3baf85de7da5d32"
+      ],
+      [
+        "ae705e0480652ebe"
+      ]
+    ]
+  }
+]
