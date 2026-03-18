@@ -73,8 +73,8 @@
     "name": "",
     "statusCode": "",
     "headers": {},
-    "x": 768,
-    "y": 387,
+    "x": 870,
+    "y": 400,
     "wires": []
   },
   {
@@ -122,8 +122,8 @@
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 700,
-    "y": 240,
+    "x": 660,
+    "y": 280,
     "wires": [
       [
         "29cacc765d7aef9d",
@@ -176,190 +176,5 @@
         "29cacc765d7aef9d"
       ]
     ]
-  },
-  {
-    "id": "7127470336dd0c15",
-    "type": "debug",
-    "z": "7c407c5ee338bba6",
-    "name": "debug 1",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 840,
-    "y": 780,
-    "wires": []
-  },
-  {
-    "id": "3ce8ee1d5b6085a9",
-    "type": "SchematicsDX Integration",
-    "z": "7c407c5ee338bba6",
-    "name": "testeapi",
-    "actionId": "testeapi",
-    "url": "/29969424-11e7-489f-9ee5-29b408799c0d/schematics-dx/testeapi",
-    "method": "post",
-    "upload": false,
-    "swaggerDoc": "",
-    "actionParameters": [],
-    "x": 190,
-    "y": 520,
-    "wires": [
-      [
-        "5c1293a1d726b742"
-      ]
-    ]
-  },
-  {
-    "id": "0ec0d0650ab7e9aa",
-    "type": "SchematicsDX Integration - Response",
-    "z": "7c407c5ee338bba6",
-    "name": "testeapi-response",
-    "title": "testeapi-response",
-    "response": "testeapi-response",
-    "responseType": "Information",
-    "x": 770,
-    "y": 520,
-    "wires": []
-  },
-  {
-    "id": "7012ef522a9c4494",
-    "type": "http in",
-    "z": "7c407c5ee338bba6",
-    "name": "Conexao",
-    "path": "conexao",
-    "url": "/29969424-11e7-489f-9ee5-29b408799c0d/conexao",
-    "method": "get",
-    "usetls": false,
-    "upload": false,
-    "swaggerDoc": "",
-    "x": 360,
-    "y": 880,
-    "wires": [
-      [
-        "d01f57f4585b81ff",
-        "dbd1ce9c8855ef8a"
-      ]
-    ]
-  },
-  {
-    "id": "d01f57f4585b81ff",
-    "type": "http response",
-    "z": "7c407c5ee338bba6",
-    "name": "",
-    "statusCode": "",
-    "headers": {},
-    "x": 520,
-    "y": 840,
-    "wires": []
-  },
-  {
-    "id": "dbd1ce9c8855ef8a",
-    "type": "debug",
-    "z": "7c407c5ee338bba6",
-    "name": "debug 3",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 650,
-    "y": 920,
-    "wires": []
-  },
-  {
-    "id": "5c6640dbe5153e4d",
-    "type": "http-api-catalog",
-    "z": "7c407c5ee338bba6",
-    "name": "Gets surgical history for a specific patient",
-    "method": "GET",
-    "apiCategory": "Tasy Interfaces",
-    "endpoint": "/api/health-history/surgical-history/patient/{patientId}",
-    "urlParams": [
-      {
-        "name": "patientId",
-        "value": "1",
-        "type": "str"
-      }
-    ],
-    "ret": "obj",
-    "headers": [],
-    "x": 840,
-    "y": 680,
-    "wires": [
-      [
-        "7127470336dd0c15"
-      ]
-    ]
-  },
-  {
-    "id": "5c1293a1d726b742",
-    "type": "http-api-catalog",
-    "z": "7c407c5ee338bba6",
-    "name": "List of Authorization",
-    "method": "GET",
-    "apiCategory": "Tasy Interfaces",
-    "endpoint": "/api/health-insurance/authorization",
-    "urlParams": [],
-    "ret": "obj",
-    "headers": [
-      {
-        "name": "beneficiaryCard",
-        "value": "00261231100342020"
-      }
-    ],
-    "x": 430,
-    "y": 520,
-    "wires": [
-      [
-        "0ec0d0650ab7e9aa",
-        "ca0a03fc27d2ba98"
-      ]
-    ]
-  },
-  {
-    "id": "ca0a03fc27d2ba98",
-    "type": "debug",
-    "z": "7c407c5ee338bba6",
-    "name": "debug 4",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 610,
-    "y": 440,
-    "wires": []
-  },
-  {
-    "id": "c60b0b91db4e163d",
-    "type": "smartcare-mcp",
-    "name": "968c6db3-de9f-4e42-a9ae-064f32e684cf",
-    "mcpSlug": "968c6db3-de9f-4e42-a9ae-064f32e684cf",
-    "mcpLabel": "968c6db3-de9f-4e42-a9ae-064f32e684cf",
-    "specType": "paste",
-    "openApiSpec": "",
-    "authType": "noauth",
-    "headerName": "",
-    "mcpUrl": "",
-    "registered": true
-  },
-  {
-    "id": "9f6e42cc939e0637",
-    "type": "smartcare-agent",
-    "name": "Smartcare H7",
-    "agentName": "smartcare-h7",
-    "personality": "You are a helpful assistant.",
-    "mcpServers": "[\"968c6db3-de9f-4e42-a9ae-064f32e684cf\"]",
-    "inputs": "TEXT",
-    "guardrailEnabled": false,
-    "sanitizationEnabled": false,
-    "registered": false
   }
 ]
