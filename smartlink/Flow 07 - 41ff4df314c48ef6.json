@@ -1,0 +1,57 @@
+[
+  {
+    "id": "41ff4df314c48ef6",
+    "type": "tab",
+    "label": "Flow 07",
+    "disabled": false,
+    "info": "",
+    "env": [],
+    "dbPanelCode": "",
+    "extensionId": "29969424-11e7-489f-9ee5-29b408799c0d"
+  },
+  {
+    "id": "613d9477f6c20005",
+    "type": "inject",
+    "z": "41ff4df314c48ef6",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 100,
+    "y": 200,
+    "wires": [
+      [
+        "2cee7ad607d7d464"
+      ]
+    ]
+  },
+  {
+    "id": "2cee7ad607d7d464",
+    "type": "debug",
+    "z": "41ff4df314c48ef6",
+    "name": "debug 1",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 360,
+    "y": 200,
+    "wires": []
+  }
+]
